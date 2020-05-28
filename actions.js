@@ -3,7 +3,7 @@ const fs = require('fs');
 
 
 const readList=()=>{
-  return   JSON.parse(fs.readFileSync('todos.json').toString());
+  return   JSON.parse(fs.readFileSync('tasks.json').toString());
 
 }
 
@@ -25,7 +25,7 @@ const addNewTask=(task)=>{
     })
     if(checkDuplicate.length===0){
         data.push({task:task})
-        fs.writeFileSync('todos.json',JSON.stringify(data))
+        fs.writeFileSync('tasks.json',JSON.stringify(data))
         console.log(chalk.red(`task : "${task}" added`))
     }else{
         console.log('you got this task on list')
@@ -39,13 +39,13 @@ const removeTaskbyName = (task)=>{
     const newData = data.filter((el)=>{
         return el.task!==task
     })
-    fs.writeFileSync('todos.json',JSON.stringify(newData))
+    fs.writeFileSync('tasks.json',JSON.stringify(newData))
     console.log(chalk.red(`task : "${task}" deleted`))
 
 }
 
 const clearList = ()=>{
-    fs.writeFileSync('todos.json',JSON.stringify([]))
+    fs.writeFileSync('tasks.json',JSON.stringify([]))
     console.log(chalk.red('list deleted'))
 }
 
